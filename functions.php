@@ -146,6 +146,65 @@ function bones_theme_customizer($wp_customize) {
   // Uncomment the following to change the default section titles
   // $wp_customize->get_section('colors')->title = __( 'Theme Colors' );
   // $wp_customize->get_section('background_image')->title = __( 'Images' );
+  
+  /* ADMIN IMAGE SECTION */
+  $wp_customize->add_section('p1bones_admin_image', Array(
+    'title'=>'Admin Image',
+    'priority'=>1000
+  ));
+  /* CUSTOM ADMIN IMAGE */
+  $wp_customize->add_setting('p1bones_admin_image_uri', Array(
+    'default'=>'',
+    'transport'=>'postMessage'
+  ));
+  $wp_customize->add_control(
+    new WP_Customize_Image_Control(
+      $wp_customize,
+      'p1bones_admin_image',
+      array(
+        'label'      => __('Admin Page Image (Logo)', 'p1bones'),
+        'section'    => 'p1bones_admin_image',
+        'settings'   => 'p1bones_admin_image_uri',
+        'context'    => 'your_setting_context'
+      )
+    )
+  );
+  /* CUSTOM ADMIN IMAGE LINK */
+  $wp_customize->add_setting('p1bones_admin_image_link', Array(
+    'default'=>'/',
+    'transport'=>'postMessage'
+  ));
+  $wp_customize->add_control('p1bones_admin_image_link', Array(
+    'label'=>'Link URL (default="/")',
+    'type'=>'text',
+    'section'=>'p1bones_admin_image'
+  ));
+  /* CUSTOM ADMIN IMAGE TOOLTIP */
+  $wp_customize->add_setting('p1bones_admin_image_tooltip', Array(
+    'default'=>get_bloginfo("name"),
+    'transport'=>'postMessage'
+  ));
+  $wp_customize->add_control('p1bones_admin_image_tooltip', Array(
+    'label'=>'Tooltip Text (default=blog/site title)',
+    'type'=>'text',
+    'section'=>'p1bones_admin_image'
+  ));
+  
+  /* GOOGLE ANALYTICS SECTION */
+  $wp_customize->add_section('p1bones_google_analytics', Array(
+    'title'=>'Google Analytics',
+    'priority'=>1001
+  ));
+  /* GOOGLE ANALYTICS ID STRING */
+  $wp_customize->add_setting('p1bones_google_analytics_id', Array(
+    'default'=>'',
+    'transport'=>'postMessage'
+  ));
+  $wp_customize->add_control('p1bones_google_analytics_id', Array(
+    'label'=>'ID (example:UA-XXXXX-X)',
+    'type'=>'text',
+    'section'=>'p1bones_google_analytics'
+  ));
 }
 
 add_action( 'customize_register', 'bones_theme_customizer' );
@@ -239,9 +298,78 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
-  wp_enqueue_style('googleFonts', '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+  wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
+
+/*
+ADMIN LOGIN LOGO
+Changes the admin login image to libraray/images/login-logo.png
+This will get the image dimensions automatically, so we just need to replace the image and go instead of deal with code edits.
+No more plugin for this simple task!
+*/
+function my_login_logo() {
+    // get the image uri defined in theme customizer
+    $file = get_theme_mod('p1bones_admin_image_uri');
+    
+    // if no image is defined, use the default p1bones image
+    if(strlen($file) < 1) {
+      $file = get_stylesheet_directory_uri() . '/library/images/login-logo.png';
+    }
+    
+    // get dimensions of the image
+    $dimensions = getimagesize($file);
+    
+    // output appropriate css
+    echo '
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(' . $file . ');
+            background-size: 100%;
+            width: ' . $dimensions[0] . 'px;
+            height: ' . $dimensions[1] . 'px;
+        }
+    </style>';
+}
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
+
+/*
+ADMIN LOGO LINK
+Changes where the admin logo image links to.
+We're changing this to simply direct the user to the document root.
+*/
+function loginpage_custom_link() {
+  // get url defined in theme customizer
+  $url = get_theme_mod('p1bones_admin_image_link');
+  
+  // if there is a url defined, return it
+  if(strlen($url) > 0) {
+    return $url;
+  }
+  
+  // as a fallback, simply use the sites root/homepage
+  return "/";
+}
+add_filter('login_headerurl', 'loginpage_custom_link');
+
+/*
+ADMIN LOGO TOOLTIP
+Changes the text displayed in tooltip for the admin logo image.
+We're changing it to simply display the name of our blog/site.
+*/
+function change_title_on_logo() {
+  // get tooltip defined in theme customizer
+  $tooltip = get_theme_mod('p1bones_admin_image_tooltip');
+  
+  // if there is a tooltip defined, return it
+  if(strlen($tooltip) > 0) {
+    return $tooltip;
+  }
+  
+  // as a fallback, use the blog/site name
+  return get_bloginfo("name");
+}
+add_filter('login_headertitle', 'change_title_on_logo');
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>
