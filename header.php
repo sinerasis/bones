@@ -81,8 +81,11 @@
 
 					<?php // if you'd like to use the site description you can un-comment it below ?>
 					<?php // bloginfo('description'); ?>
-
-
+				</div>
+			</header>
+			
+			<div class="main-navigation">
+				<div class="wrap cf">
 					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 						<?php wp_nav_menu(array(
     					         'container' => false,                           // remove nav container
@@ -97,9 +100,6 @@
         			               'depth' => 0,                                   // limit the depth of the nav
     					         'fallback_cb' => ''                             // fallback function (if there is one)
 						)); ?>
-
 					</nav>
-
 				</div>
-
-			</header>
+			</div>

@@ -168,6 +168,10 @@ HEADER STYLES
 NAVIGATION STYLES
 *********************/
 
+.main-navigation {
+	background-color: $black;
+}
+
 /*
 all navs have a .nav class applied via
 the wp_menu function; this is so we can

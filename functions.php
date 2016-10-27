@@ -155,6 +155,7 @@ function bones_theme_customizer($wp_customize) {
   /* COLOR PICKERS */
   $color_pickers = Array(
 	'bones_frontend[.header][background-color]' => 'Header Background',
+	'bones_frontend[.main-navigation][background-color]' => 'Main Nav Background',
 	'bones_frontend[body][background-color]' => 'Body Background',
 	'bones_frontend[.footer][background-color]' => 'Footer Background',
   );
@@ -178,65 +179,65 @@ function bones_theme_customizer($wp_customize) {
     
   /* ADMIN IMAGE SECTION */
   $wp_customize->add_section('bones_admin_image', Array(
-    'title'=>'Admin Image',
-    'priority'=>1000
+    'title' => 'Admin Image',
+    'priority' => 1000
   ));
   /* CUSTOM ADMIN IMAGE */
   $wp_customize->add_setting('bones_admin_image_uri', Array(
-    'default'=>'',
-    'transport'=>'postMessage'
+    'default' => '',
+    'transport' => 'postMessage'
   ));
   $wp_customize->add_control(
     new WP_Customize_Image_Control(
       $wp_customize,
       'bones_admin_image',
       array(
-        'label'      => __('Admin Page Image (Logo)', 'bones'),
-        'section'    => 'bones_admin_image',
-        'settings'   => 'bones_admin_image_uri',
-        'context'    => 'your_setting_context'
+        'label' => __('Admin Page Image (Logo)', 'bones'),
+        'section' => 'bones_admin_image',
+        'settings' => 'bones_admin_image_uri',
+        'context' => 'your_setting_context'
       )
     )
   );
   /* CUSTOM ADMIN IMAGE LINK */
   $wp_customize->add_setting('bones_admin_image_link', Array(
-    'default'=>'/',
-    'transport'=>'postMessage'
+    'default' => '/',
+    'transport' => 'postMessage'
   ));
   $wp_customize->add_control('bones_admin_image_link', Array(
-    'label'=>'Link URL (default="/")',
-    'type'=>'text',
-    'section'=>'bones_admin_image'
+    'label' => 'Link URL (default="/")',
+    'type' => 'text',
+    'section' => 'bones_admin_image'
   ));
   /* CUSTOM ADMIN IMAGE TOOLTIP */
   $wp_customize->add_setting('bones_admin_image_tooltip', Array(
-    'default'=>get_bloginfo("name"),
-    'transport'=>'postMessage'
+    'default' => get_bloginfo("name"),
+    'transport' => 'postMessage'
   ));
   $wp_customize->add_control('bones_admin_image_tooltip', Array(
-    'label'=>'Tooltip Text (default=blog/site title)',
-    'type'=>'text',
-    'section'=>'bones_admin_image'
+    'label' => 'Tooltip Text (default=blog/site title)',
+    'type' => 'text',
+    'section' => 'bones_admin_image'
   ));
   
   /* GOOGLE ANALYTICS SECTION */
   $wp_customize->add_section('bones_google_analytics', Array(
-    'title'=>'Google Analytics',
-    'priority'=>1001
+    'title' => 'Google Analytics',
+    'priority' => 1001
   ));
   /* GOOGLE ANALYTICS ID STRING */
   $wp_customize->add_setting('bones_google_analytics_id', Array(
-    'default'=>'',
-    'transport'=>'postMessage'
+    'default' => '',
+    'transport' => 'postMessage'
   ));
   $wp_customize->add_control('bones_google_analytics_id', Array(
-    'label'=>'ID (example:UA-XXXXX-X)',
-    'type'=>'text',
-    'section'=>'bones_google_analytics'
+    'label' => 'ID (example: UA-XXXXX-X)',
+    'type' => 'text',
+    'section' => 'bones_google_analytics'
   ));
 }
 
-add_action( 'customize_register', 'bones_theme_customizer' );
+add_action('customize_register', 'bones_theme_customizer');
 
 /************* ACTIVE SIDEBARS ********************/
 
