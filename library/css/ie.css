@@ -331,6 +331,11 @@ SIDEBARS & ASIDES
 /* recent-comments widget */
 /* search widget */
 /* text widget */
+/* Footer Navigation */
+.footer-navigation .nav li ul.sub-menu {
+  bottom: 0;
+  margin-bottom: 3em; }
+
 /*********************
 FOOTER STYLES
 *********************/

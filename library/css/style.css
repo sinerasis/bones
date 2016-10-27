@@ -1606,6 +1606,10 @@ SIDEBARS & ASIDES
   border-radius: 2px;
   margin-bottom: 1.5em; }
 
+/* Footer Navigation */
+.footer-navigation {
+  background-color: #323944; }
+
 /*********************
 FOOTER STYLES
 *********************/
@@ -1828,6 +1832,11 @@ you can add resource intensive styles.
   /* recent-comments widget */
   /* search widget */
   /* text widget */
+  /* Footer Navigation */
+  .footer-navigation .nav li ul.sub-menu {
+    bottom: 0;
+    margin-bottom: 3em; }
+
   /*********************
   FOOTER STYLES
   *********************/

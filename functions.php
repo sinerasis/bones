@@ -157,6 +157,7 @@ function bones_theme_customizer($wp_customize) {
 	'bones_frontend[.header][background-color]' => 'Header Background',
 	'bones_frontend[.main-navigation][background-color]' => 'Main Nav Background',
 	'bones_frontend[body][background-color]' => 'Body Background',
+	'bones_frontend[.footer-navigation][background-color]' => 'Footer Nav Background',
 	'bones_frontend[.footer][background-color]' => 'Footer Background',
   );
 	foreach ($color_pickers as $identifier => $label) {
