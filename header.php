@@ -34,12 +34,28 @@
 		<?php // wordpress head functions ?>
 		<?php wp_head(); ?>
 		<?php // end of wordpress head ?>
+		
+		<?php
+		// customizer styles
+		$bones_frontend = get_theme_mod('bones_frontend', false);
+		if ($bones_frontend !== false) {
+			echo '<style type="text/css">';
+			foreach ($bones_frontend as $selector => $properties) {
+				echo $selector . ' {';
+				foreach ($properties as $property => $value) {
+					echo $property . ': ' . $value . ';';
+				}
+				echo '}';
+			}
+			echo '</style>';
+		}
+		?>
 
-		<?php if(strlen($p1bones_ga_id) > 0): ?>
+		<?php if(strlen($bones_ga_id) > 0): ?>
 		<!-- Google Analytics -->		
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', '<?php echo $p1bones_ga_id; ?>']);
+			_gaq.push(['_setAccount', '<?php echo $bones_ga_id; ?>']);
 			_gaq.push(['_trackPageview']);
 
 			(function() {

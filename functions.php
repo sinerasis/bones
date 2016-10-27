@@ -135,7 +135,7 @@ function bones_theme_customizer($wp_customize) {
   // Uncomment the below lines to remove the default customize sections 
 
   // $wp_customize->remove_section('title_tagline');
-  // $wp_customize->remove_section('colors');
+  $wp_customize->remove_section('colors');
   // $wp_customize->remove_section('background_image');
   // $wp_customize->remove_section('static_front_page');
   // $wp_customize->remove_section('nav');
@@ -147,63 +147,92 @@ function bones_theme_customizer($wp_customize) {
   // $wp_customize->get_section('colors')->title = __( 'Theme Colors' );
   // $wp_customize->get_section('background_image')->title = __( 'Images' );
   
+  /* COLOR SECTION */
+  $wp_customize->add_section('bones_frontend_colors', Array(
+	  'title' => 'Colors',
+	  'priority' => 41,
+  ));
+  /* COLOR PICKERS */
+  $color_pickers = Array(
+	'bones_frontend[.header][background-color]' => 'Header Background',
+	'bones_frontend[body][background-color]' => 'Body Background',
+	'bones_frontend[.footer][background-color]' => 'Footer Background',
+  );
+	foreach ($color_pickers as $identifier => $label) {
+		$wp_customize->add_setting($identifier, Array(
+			'default' => '',
+			'transport' => 'refresh',
+		));
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$identifier,
+				array(
+					'label' => __($label, 'sinBones'),
+					'section' => 'bones_frontend_colors',
+					'setting' => $identifier,
+				)
+			)
+		);
+	}
+    
   /* ADMIN IMAGE SECTION */
-  $wp_customize->add_section('p1bones_admin_image', Array(
+  $wp_customize->add_section('bones_admin_image', Array(
     'title'=>'Admin Image',
     'priority'=>1000
   ));
   /* CUSTOM ADMIN IMAGE */
-  $wp_customize->add_setting('p1bones_admin_image_uri', Array(
+  $wp_customize->add_setting('bones_admin_image_uri', Array(
     'default'=>'',
     'transport'=>'postMessage'
   ));
   $wp_customize->add_control(
     new WP_Customize_Image_Control(
       $wp_customize,
-      'p1bones_admin_image',
+      'bones_admin_image',
       array(
-        'label'      => __('Admin Page Image (Logo)', 'p1bones'),
-        'section'    => 'p1bones_admin_image',
-        'settings'   => 'p1bones_admin_image_uri',
+        'label'      => __('Admin Page Image (Logo)', 'bones'),
+        'section'    => 'bones_admin_image',
+        'settings'   => 'bones_admin_image_uri',
         'context'    => 'your_setting_context'
       )
     )
   );
   /* CUSTOM ADMIN IMAGE LINK */
-  $wp_customize->add_setting('p1bones_admin_image_link', Array(
+  $wp_customize->add_setting('bones_admin_image_link', Array(
     'default'=>'/',
     'transport'=>'postMessage'
   ));
-  $wp_customize->add_control('p1bones_admin_image_link', Array(
+  $wp_customize->add_control('bones_admin_image_link', Array(
     'label'=>'Link URL (default="/")',
     'type'=>'text',
-    'section'=>'p1bones_admin_image'
+    'section'=>'bones_admin_image'
   ));
   /* CUSTOM ADMIN IMAGE TOOLTIP */
-  $wp_customize->add_setting('p1bones_admin_image_tooltip', Array(
+  $wp_customize->add_setting('bones_admin_image_tooltip', Array(
     'default'=>get_bloginfo("name"),
     'transport'=>'postMessage'
   ));
-  $wp_customize->add_control('p1bones_admin_image_tooltip', Array(
+  $wp_customize->add_control('bones_admin_image_tooltip', Array(
     'label'=>'Tooltip Text (default=blog/site title)',
     'type'=>'text',
-    'section'=>'p1bones_admin_image'
+    'section'=>'bones_admin_image'
   ));
   
   /* GOOGLE ANALYTICS SECTION */
-  $wp_customize->add_section('p1bones_google_analytics', Array(
+  $wp_customize->add_section('bones_google_analytics', Array(
     'title'=>'Google Analytics',
     'priority'=>1001
   ));
   /* GOOGLE ANALYTICS ID STRING */
-  $wp_customize->add_setting('p1bones_google_analytics_id', Array(
+  $wp_customize->add_setting('bones_google_analytics_id', Array(
     'default'=>'',
     'transport'=>'postMessage'
   ));
-  $wp_customize->add_control('p1bones_google_analytics_id', Array(
+  $wp_customize->add_control('bones_google_analytics_id', Array(
     'label'=>'ID (example:UA-XXXXX-X)',
     'type'=>'text',
-    'section'=>'p1bones_google_analytics'
+    'section'=>'bones_google_analytics'
   ));
 }
 
