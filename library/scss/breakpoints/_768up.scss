@@ -69,8 +69,7 @@ NAVIGATION STYLES
 			*/
 			&:hover, &:focus {
 				color: $white;
-				//text-decoration: underline;
-				background-color: rgba(255, 255, 255, .1);
+				background-color: $rgba-lighten-1;
 			}
 		}
 
@@ -95,12 +94,12 @@ NAVIGATION STYLES
 					border-right: 0;
 					display: block;
 					width: 180px;
-					border-bottom: 1px solid rgba(255, 255, 255, .2);
-					background-color: rgba(255, 255, 255, .1);
+					border-bottom: 1px solid $rgba-lighten-2;
+					background-color: $rgba-lighten-1;
 
 					&:hover,
 					&:focus {
-						background-color: rgba(255, 255, 255, .2);
+						background-color: $rgba-lighten-2;
 					}
 
 					&:link {}
@@ -125,11 +124,11 @@ NAVIGATION STYLES
 					left:100%;
 					
 					a {
-						background-color: rgba(255, 255, 255, .2);
+						background-color: $rgba-lighten-2;
 						
 						&:hover,
 						&:focus {
-							background-color: rgba(255, 255, 255, .3);
+							background-color: $rgba-lighten-3;
 						}
 					}
 				}
@@ -140,7 +139,7 @@ NAVIGATION STYLES
 			li.current_page_item,
 			li.current_page_ancestor {
 				a {
-					background-color: rgba(255, 255, 255, .3);
+					background-color: $rgba-lighten-3;
 				}
 			}
 		}
@@ -158,7 +157,7 @@ NAVIGATION STYLES
 	li.current_page_item,
 	li.current_page_ancestor {
 		a {
-			background-color: rgba(255, 255, 255, .2);
+			background-color: $rgba-lighten-2;
 		}
 	}  /* end current highlighters */
 
@@ -336,4 +335,9 @@ We show 2-levels deep on viewports 768 and up.
 		}
 	}
 } /* end .footer-links */
+
+.copyright {
+	margin-top: 0;
+	text-align: left;
+}
 

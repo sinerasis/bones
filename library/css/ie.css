@@ -18,6 +18,7 @@ understand (what's inside the media queries). We also need to
 import the mixins file so SASS can understand the variables.
 ******************************************************************/
 /* Colors */
+/* To lighten/darken without SASS or without knowing the background color ahead of time, we can use RGBA. */
 /* Grid */
 /******************************************************************
 Site Name:
@@ -393,6 +394,10 @@ We show 2-levels deep on viewports 768 and up.
     display: unset; }
 
 /* end .footer-links */
+.copyright {
+  margin-top: 0;
+  text-align: left; }
+
 /******************************************************************
 Site Name:
 Author:

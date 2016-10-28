@@ -438,6 +438,7 @@ span.amp {
   font-style: italic; }
 
 /* Colors */
+/* To lighten/darken without SASS or without knowing the background color ahead of time, we can use RGBA. */
 /* Grid */
 /******************************************************************
 Site Name:
@@ -1218,7 +1219,12 @@ NAVIGATION STYLES
   font-weight: bold;
   font-size: 1em;
   line-height: 1em;
-  padding: .75em 3%; }
+  text-align: center;
+  overflow: hidden; }
+  .mobile-burger > div {
+    padding: .75em;
+    display: inline-block;
+    margin: auto; }
   .mobile-burger .burger {
     width: 20px;
     float: left;
@@ -1633,13 +1639,14 @@ Our footer navigation shows the top level ONLY and breaks into a 2-column list.
   width: 50%;
   float: left;
   padding: .5em .25em 0 .25em; }
-  .footer-links ul li a {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: none; }
   .footer-links ul li ul {
     display: none; }
 
 /* end .footer-links */
+.copyright {
+  margin-top: 3em;
+  text-align: center; }
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's
@@ -1905,7 +1912,10 @@ you can add resource intensive styles.
     .footer-links ul li ul {
       display: unset; }
 
-  /* end .footer-links */ }
+  /* end .footer-links */
+  .copyright {
+    margin-top: 0;
+    text-align: left; } }
 /*********************
 DESKTOP
 This is the average viewing window. So Desktops, Laptops, and

@@ -188,6 +188,7 @@ body#tinymce.wp-editor {
   http://simplebits.com/notebook/2008/08/14/ampersands-2/
   */
   /* Colors */
+  /* To lighten/darken without SASS or without knowing the background color ahead of time, we can use RGBA. */
   /* Grid */
   /******************************************************************
   Site Name:
