@@ -92,29 +92,54 @@ var timeToWaitForLast = 100;
  * In the functions.php file, you can see we're not loading the gravatar
  * images on mobile to save bandwidth. Once we hit an acceptable viewport
  * then we can swap out those images since they are located in a data attribute.
-*/
-function loadGravatars() {
-  // set the viewport using the function above
-  viewport = updateViewportDimensions();
-  // if the viewport is tablet or larger, we load in the gravatars
-  if (viewport.width >= 768) {
-  jQuery('.comment img[data-gravatar]').each(function(){
-    jQuery(this).attr('src',jQuery(this).attr('data-gravatar'));
-  });
-	}
-} // end function
 
+function loadGravatars() {
+	// set the viewport using the function above
+	viewport = updateViewportDimensions();
+	
+	// if the viewport is tablet or larger, we load in the gravatars
+	if (viewport.width >= 768) {
+		jQuery('.comment img[data-gravatar]').each(function() {
+			jQuery(this).attr('src', jQuery(this).attr('data-gravatar'));
+		});
+	}
+}
+*/
 
 /*
  * Put all your regular jQuery in here.
 */
 jQuery(document).ready(function($) {
 
-  /*
-   * Let's fire off the gravatar function
-   * You can remove this if you don't need it
-  */
-  loadGravatars();
+	/*
+	* Let's fire off the gravatar function
+	* You can remove this if you don't need it
+	*/
+	//loadGravatars();
+	
+	// hide/show the mobile menu on burger click
+	$('.mobile-burger').click(function() {
+		if ($('.main-navigation nav').css('display') == 'none') {
+			$('.main-navigation nav').css('display', 'inline');
+		} else {
+			$('.main-navigation nav').css('display', 'none');
+		}
+	});
+	
+	/*
+	Make sure the menu is visible at viewports >= 768.
+	This is a bit of an edge case, since most people don't resize their windows constantly.
+	*/
+	$(window).resize(function () {
+		// update the viewport, in case the window size has changed
+		viewport = updateViewportDimensions();
 
-
+		// if we're above or equal to 768 fire this off
+		if (viewport.width >= 768) {
+			$('.main-navigation nav').css('display', 'inline');
+		} else {
+			$('.main-navigation nav').css('display', 'none');
+		}
+	});
+	
 }); /* end of as page load scripts */

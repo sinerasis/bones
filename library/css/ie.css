@@ -241,6 +241,12 @@ HEADER STYLES
 /*********************
 NAVIGATION STYLES
 *********************/
+.main-navigation nav {
+  display: inline; }
+
+.mobile-burger {
+  display: none; }
+
 .nav {
   border: 0;
   /* end .menu ul li */
@@ -269,7 +275,6 @@ NAVIGATION STYLES
     .nav li ul.sub-menu,
     .nav li ul.children {
       margin-top: 0;
-      border: 1px solid #ccc;
       border-top: 0;
       position: absolute;
       visibility: hidden;
@@ -288,7 +293,7 @@ NAVIGATION STYLES
           border-right: 0;
           display: block;
           width: 180px;
-          border-bottom: 1px solid #ccc;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
           background-color: rgba(255, 255, 255, 0.1); }
           .nav li ul.sub-menu li a:hover, .nav li ul.sub-menu li a:focus,
           .nav li ul.children li a:hover,
@@ -371,12 +376,21 @@ you'll probably need to do quite a bit
 of overriding here if you styled them for
 mobile. Make sure to double check these!
 */
+/*
+We show 2-levels deep on viewports 768 and up.
+*/
 .footer-links ul li {
+  width: unset;
+  padding: unset;
   /*
   be careful with the depth of your menus.
   it's very rare to have multi-depth menus in
   the footer.
   */ }
+  .footer-links ul li a {
+    background-color: unset; }
+  .footer-links ul li ul {
+    display: unset; }
 
 /* end .footer-links */
 /******************************************************************

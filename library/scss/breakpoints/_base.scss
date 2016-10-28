@@ -170,6 +170,38 @@ NAVIGATION STYLES
 
 .main-navigation {
 	background-color: $black;
+	
+	nav {
+		display: none;
+	}
+}
+
+.mobile-burger {
+	text-transform: uppercase;
+	color: $white;
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 1em;
+	padding: .75em 3%;
+	 
+	.burger {
+		width: 20px;
+		float: left;
+		margin-right: 10px;
+		
+		span {
+			height: 3px;
+			width: 100%;
+			margin-bottom: 3px;
+			display: block;
+			background-color: $white;
+		}
+	}
+	
+	&:hover,
+	&:focus {
+		cursor: pointer;
+	}
 }
 
 /*
@@ -183,6 +215,7 @@ and more scalable.
 .nav {
 	border-bottom: 0;
 	margin: 0;
+	
 	ul {
 		margin: 0;
 	}
@@ -257,7 +290,7 @@ and more scalable.
 	li.current_page_ancestor {
 
 		a { 
-			
+			background-color: rgba(255, 255, 255, .1);
 		}
 
 	}  /* end current highlighters */
@@ -897,16 +930,27 @@ FOOTER STYLES
 	it simple because you'll have to
 	override these styles for the desktop
 	view.
+	
+	Our footer navigation shows the top level ONLY and breaks into a 2-column list.
 	*/
+	
 	.footer-links {
-
 		ul {
-
-			li {}
-
+			li {
+				width: 50%;
+				float: left;
+				padding: .5em .25em 0 .25em;
+				
+				a {
+					background-color: rgba(255, 255, 255, .05);
+					border: none;
+				}
+				
+				ul {
+					display: none;
+				}
+			}
 		}
-
 	} /* end .footer-links */
-
 
 	.copyright {}

@@ -93,6 +93,16 @@
 			
 			<div class="main-navigation">
 				<div class="wrap cf">
+					<div class="mobile-burger">
+						<div>
+							<div class="burger">
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+							Menu
+						</div>
+					</div>
 					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
 						<?php wp_nav_menu(array(
     					         'container' => false,                           // remove nav container
