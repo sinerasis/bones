@@ -1266,7 +1266,7 @@ and more scalable.
       color: #fff;
       text-decoration: none;
       padding: .5em 3%;
-      border-bottom: 1px solid #272d35;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       /*
       remember this is for mobile ONLY, so there's no need
       to even declare hover styles here, you can do it in
