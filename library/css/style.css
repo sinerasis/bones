@@ -860,43 +860,9 @@ textarea,
   max-width: 400px;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #eaedf2;
+  box-sizing: border-box;
   -webkit-transition: background-color 0.24s ease-in-out;
   transition: background-color 0.24s ease-in-out; }
-  input[type="text"]:focus, input[type="text"]:active,
-  input[type="password"]:focus,
-  input[type="password"]:active,
-  input[type="datetime"]:focus,
-  input[type="datetime"]:active,
-  input[type="datetime-local"]:focus,
-  input[type="datetime-local"]:active,
-  input[type="date"]:focus,
-  input[type="date"]:active,
-  input[type="month"]:focus,
-  input[type="month"]:active,
-  input[type="time"]:focus,
-  input[type="time"]:active,
-  input[type="week"]:focus,
-  input[type="week"]:active,
-  input[type="number"]:focus,
-  input[type="number"]:active,
-  input[type="email"]:focus,
-  input[type="email"]:active,
-  input[type="url"]:focus,
-  input[type="url"]:active,
-  input[type="search"]:focus,
-  input[type="search"]:active,
-  input[type="tel"]:focus,
-  input[type="tel"]:active,
-  input[type="color"]:focus,
-  input[type="color"]:active,
-  select:focus,
-  select:active,
-  textarea:focus,
-  textarea:active,
-  .field:focus,
-  .field:active {
-    background-color: #f7f8fa;
-    outline: none; }
   input[type="text"].error, input[type="text"].is-invalid,
   input[type="password"].error,
   input[type="password"].is-invalid,
