@@ -183,6 +183,9 @@ and more scalable.
 .nav {
 	border-bottom: 0;
 	margin: 0;
+	ul {
+		margin: 0;
+	}
 
 	li {
 
@@ -190,7 +193,8 @@ and more scalable.
 			display: block;
 			color: $white;
 			text-decoration: none;
-			padding: 0.75em;
+			padding: .5em 3%;
+			border-bottom: 1px solid darken($black, 5%);
 
 			/*
 			remember this is for mobile ONLY, so there's no need
@@ -216,12 +220,12 @@ and more scalable.
 		*/
 		ul.sub-menu,
 		ul.children {
-
+			
 			li {
 
 				a {
-					padding-left: 30px;
-
+					padding: .5em 6%;
+					
 					&:hover,
 					&:focus {}
 
@@ -234,7 +238,15 @@ and more scalable.
 				&:last-child {}
 
 			}
-
+			
+			ul.sub-menu,
+			ul.children {
+				li {
+					a {
+						padding: .5em 9%;
+					}
+				}
+			}
 		}
 
 	} /* end .menu li */
@@ -244,7 +256,10 @@ and more scalable.
 	li.current_page_item,
 	li.current_page_ancestor {
 
-		a {}
+		a { 
+			/* Transparent white because we don't KNOW what the background color will be here. */
+			background-color: rgba(255, 255, 255 , .1);
+		}
 
 	}  /* end current highlighters */
 

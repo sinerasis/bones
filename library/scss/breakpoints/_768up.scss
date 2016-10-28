@@ -51,7 +51,8 @@ NAVIGATION STYLES
 
 		a {
 			border-bottom: 0;
-
+			padding: .75em;
+			
 			/*
 			you can use hover styles here even though this size
 			has the possibility of being a mobile device.
@@ -262,9 +263,15 @@ SIDEBARS & ASIDES
 
 /* Footer Navigation */
 .footer-navigation {
+	// navigation menus in the footer should be positioned above their parents
 	.nav li ul.sub-menu {
 		bottom: 0;
 		margin-bottom: 3em;
+	}
+	// correctly positions sub-sub-menus (not supporting anything deeper at this time)
+	ul.sub-menu ul.sub-menu {
+		top: unset;
+		margin-bottom: 0;
 	}
 }
 

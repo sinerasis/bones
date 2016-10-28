@@ -258,6 +258,7 @@ NAVIGATION STYLES
     /* showing sub-menus */ }
     .nav li a {
       border-bottom: 0;
+      padding: .75em;
       /*
       you can use hover styles here even though this size
       has the possibility of being a mobile device.
@@ -335,6 +336,9 @@ SIDEBARS & ASIDES
 .footer-navigation .nav li ul.sub-menu {
   bottom: 0;
   margin-bottom: 3em; }
+.footer-navigation ul.sub-menu ul.sub-menu {
+  top: unset;
+  margin-bottom: 0; }
 
 /*********************
 FOOTER STYLES

@@ -1257,6 +1257,8 @@ and more scalable.
   /* end .menu li */
   /* highlight current page */
   /* end current highlighters */ }
+  .nav ul {
+    margin: 0; }
   .nav li {
     /*
     so you really have to rethink your dropdowns for mobile.
@@ -1269,7 +1271,8 @@ and more scalable.
       display: block;
       color: #fff;
       text-decoration: none;
-      padding: 0.75em;
+      padding: .5em 3%;
+      border-bottom: 1px solid #272d35;
       /*
       remember this is for mobile ONLY, so there's no need
       to even declare hover styles here, you can do it in
@@ -1278,7 +1281,17 @@ and more scalable.
       */ }
     .nav li ul.sub-menu li a,
     .nav li ul.children li a {
-      padding-left: 30px; }
+      padding: .5em 6%; }
+    .nav li ul.sub-menu ul.sub-menu li a,
+    .nav li ul.sub-menu ul.children li a,
+    .nav li ul.children ul.sub-menu li a,
+    .nav li ul.children ul.children li a {
+      padding: .5em 9%; }
+  .nav li.current-menu-item a,
+  .nav li.current_page_item a,
+  .nav li.current_page_ancestor a {
+    /* Transparent white because we don't KNOW what the background color will be here. */
+    background-color: rgba(255, 255, 255, 0.1); }
 
 /* end .nav */
 /*********************
@@ -1759,6 +1772,7 @@ you can add resource intensive styles.
       /* showing sub-menus */ }
       .nav li a {
         border-bottom: 0;
+        padding: .75em;
         /*
         you can use hover styles here even though this size
         has the possibility of being a mobile device.
@@ -1836,6 +1850,9 @@ you can add resource intensive styles.
   .footer-navigation .nav li ul.sub-menu {
     bottom: 0;
     margin-bottom: 3em; }
+  .footer-navigation ul.sub-menu ul.sub-menu {
+    top: unset;
+    margin-bottom: 0; }
 
   /*********************
   FOOTER STYLES
