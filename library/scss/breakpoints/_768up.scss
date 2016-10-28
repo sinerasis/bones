@@ -157,7 +157,7 @@ NAVIGATION STYLES
 	li.current_page_item,
 	li.current_page_ancestor {
 		a {
-			background-color: $rgba-lighten-2;
+			background-color: $rgba-lighten-1;
 		}
 	}  /* end current highlighters */
 
@@ -337,7 +337,7 @@ We show 2-levels deep on viewports 768 and up.
 } /* end .footer-links */
 
 .copyright {
-	margin-top: 0;
+	margin: 1em 0;
 	text-align: left;
 }
 

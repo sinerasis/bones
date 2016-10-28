@@ -147,35 +147,62 @@ function bones_theme_customizer($wp_customize) {
   // $wp_customize->get_section('colors')->title = __( 'Theme Colors' );
   // $wp_customize->get_section('background_image')->title = __( 'Images' );
   
-  /* COLOR SECTION */
-  $wp_customize->add_section('bones_frontend_colors', Array(
-	  'title' => 'Colors',
-	  'priority' => 41,
-  ));
   /* COLOR PICKERS */
   $color_pickers = Array(
-	'bones_frontend[.header][background-color]' => 'Header Background',
-	'bones_frontend[.main-navigation][background-color]' => 'Main Nav Background',
-	'bones_frontend[body][background-color]' => 'Body Background',
-	'bones_frontend[.footer-navigation][background-color]' => 'Footer Nav Background',
-	'bones_frontend[.footer][background-color]' => 'Footer Background',
+	'Header' => Array(
+		// header
+		'bones_frontend[.header][background-color]' => 'Header Background',
+		'bones_frontend[.header a, .header a:visited][color]' => 'Header Links',
+		'bones_frontend[.header a:hover, .header a:focus, .header a:visted:hover, .header a:focus:hover][color]' => 'Header Links (hover)',
+		
+		// header navigation
+		'bones_frontend[.main-navigation][background-color]' => 'Main Nav Background',
+		'bones_frontend[.main-navigation a, .main-navigation a:visited][color]' => 'Main Nav Links',
+		'bones_frontend[.main-navigation a:hover, .main-navigation a:focus, .main-navigation a:visited:hover, .main-navigation a:focus:hover][color]' => 'Main Nav Links (hover)',
+	),
+	'Body' => Array(
+		// body
+		'bones_frontend[body][background-color]' => 'Body Background',
+		'bones_frontend[a, a:visited][color]' => 'Links',
+		'bones_frontend[a:hover, a:focus, a:visited:hover, a:focus:hover][color]' => 'Links (hover)',
+	),
+	'Footer' => Array(
+		// footer navigation
+		'bones_frontend[.footer-navigation][background-color]' => 'Footer Nav Background',
+		'bones_frontend[.footer-navigation a, .footer-navigation a:visited][color]' => 'Footer Nav Links',
+		'bones_frontend[.footer-navigation a:hover, .footer-navigation a:focus, .footer-navigation a:visited:hover, .footer-navigation a:focus:hover][color]' => 'Footer Nav Links (hover)',
+		
+		// footer
+		'bones_frontend[.footer][background-color]' => 'Footer Background',
+		'bones_frontend[.footer a, .footer a:visited][color]' => 'Footer Links',
+		'bones_frontend[.footer a:hover, .footer a:focus, .footer a:visited:hover, .footer a:focus:hover][color]' => 'Footer Links (hover)',
+	),
   );
-	foreach ($color_pickers as $identifier => $label) {
-		$wp_customize->add_setting($identifier, Array(
-			'default' => '',
-			'transport' => 'refresh',
+	foreach ($color_pickers as $section => $pickers) {
+		// add sections
+		$section_id = 'bones_frontend_colors_' . strtolower($section);
+		$wp_customize->add_section($section_id, Array(
+			'title' => $section . ' Colors',
+			'priority' => 41,
 		));
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				$identifier,
-				array(
-					'label' => __($label, 'sinBones'),
-					'section' => 'bones_frontend_colors',
-					'setting' => $identifier,
+		// add controls to sections
+		foreach ($pickers as $identifier => $label) {
+			$wp_customize->add_setting($identifier, Array(
+				'default' => '',
+				'transport' => 'refresh',
+			));
+			$wp_customize->add_control(
+				new WP_Customize_Color_Control(
+					$wp_customize,
+					$identifier,
+					array(
+						'label' => __($label, 'sinBones'),
+						'section' => $section_id,
+						'setting' => $identifier,
+					)
 				)
-			)
-		);
+			);
+		}
 	}
     
   /* ADMIN IMAGE SECTION */

@@ -1295,15 +1295,11 @@ POSTS & CONTENT STYLES
 
 .hentry {
   background-color: #fff;
-  border-radius: 3px;
-  margin-bottom: 1.5em;
-  border: 1px solid #ccc; }
+  margin-bottom: 1.5em; }
   .hentry header {
-    border-bottom: 1px solid #f8f9fa;
     padding: 1.5em; }
   .hentry footer {
-    padding: 1.5em;
-    border-top: 1px solid #f8f9fa; }
+    padding: 1.5em; }
     .hentry footer p {
       margin: 0; }
 
@@ -1846,7 +1842,7 @@ you can add resource intensive styles.
     .nav li.current-menu-item a,
     .nav li.current_page_item a,
     .nav li.current_page_ancestor a {
-      background-color: rgba(255, 255, 255, 0.2); }
+      background-color: rgba(255, 255, 255, 0.1); }
 
   /* end .nav */
   /*********************
@@ -1914,7 +1910,7 @@ you can add resource intensive styles.
 
   /* end .footer-links */
   .copyright {
-    margin-top: 0;
+    margin: 1em 0;
     text-align: left; } }
 /*********************
 DESKTOP
