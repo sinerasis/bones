@@ -1287,11 +1287,6 @@ and more scalable.
     .nav li ul.children ul.sub-menu li a,
     .nav li ul.children ul.children li a {
       padding: .5em 9%; }
-  .nav li.current-menu-item a,
-  .nav li.current_page_item a,
-  .nav li.current_page_ancestor a {
-    /* Transparent white because we don't KNOW what the background color will be here. */
-    background-color: rgba(255, 255, 255, 0.1); }
 
 /* end .nav */
 /*********************
@@ -1761,7 +1756,7 @@ you can add resource intensive styles.
     /* highlight current page */
     /* end current highlighters */ }
     .nav ul {
-      background: #323944;
+      background-color: #323944;
       margin-top: 0; }
     .nav li {
       float: left;
@@ -1779,7 +1774,7 @@ you can add resource intensive styles.
         */ }
         .nav li a:hover, .nav li a:focus {
           color: #fff;
-          text-decoration: underline; }
+          background-color: rgba(255, 255, 255, 0.1); }
       .nav li ul.sub-menu,
       .nav li ul.children {
         margin-top: 0;
@@ -1802,7 +1797,12 @@ you can add resource intensive styles.
             border-right: 0;
             display: block;
             width: 180px;
-            border-bottom: 1px solid #ccc; }
+            border-bottom: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.1); }
+            .nav li ul.sub-menu li a:hover, .nav li ul.sub-menu li a:focus,
+            .nav li ul.children li a:hover,
+            .nav li ul.children li a:focus {
+              background-color: rgba(255, 255, 255, 0.2); }
           .nav li ul.sub-menu li:last-child a,
           .nav li ul.children li:last-child a {
             border-bottom: 0; }
@@ -1810,9 +1810,27 @@ you can add resource intensive styles.
           .nav li ul.children li ul {
             top: 0;
             left: 100%; }
+            .nav li ul.sub-menu li ul a,
+            .nav li ul.children li ul a {
+              background-color: rgba(255, 255, 255, 0.2); }
+              .nav li ul.sub-menu li ul a:hover, .nav li ul.sub-menu li ul a:focus,
+              .nav li ul.children li ul a:hover,
+              .nav li ul.children li ul a:focus {
+                background-color: rgba(255, 255, 255, 0.3); }
+        .nav li ul.sub-menu li.current-menu-item a,
+        .nav li ul.sub-menu li.current_page_item a,
+        .nav li ul.sub-menu li.current_page_ancestor a,
+        .nav li ul.children li.current-menu-item a,
+        .nav li ul.children li.current_page_item a,
+        .nav li ul.children li.current_page_ancestor a {
+          background-color: rgba(255, 255, 255, 0.3); }
       .nav li:hover > ul {
         top: auto;
         visibility: visible; }
+    .nav li.current-menu-item a,
+    .nav li.current_page_item a,
+    .nav li.current_page_ancestor a {
+      background-color: rgba(255, 255, 255, 0.2); }
 
   /* end .nav */
   /*********************

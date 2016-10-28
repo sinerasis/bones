@@ -40,12 +40,19 @@
 		$bones_frontend = get_theme_mod('bones_frontend', false);
 		if ($bones_frontend !== false) {
 			echo '<style type="text/css">';
-			foreach ($bones_frontend as $selector => $properties) {
+			foreach ($bones_frontend as $selector => $properties) { 
 				echo $selector . ' {';
 				foreach ($properties as $property => $value) {
 					echo $property . ': ' . $value . ';';
 				}
 				echo '}';
+				
+				// menus are special because we want sub-menu background colors to match
+				if (in_array($selector, Array('.main-navigation', '.footer-navigation')) && $property == 'background-color') {
+					echo $selector . ' ul {';
+					echo $property . ': ' . $value . ';';
+					echo '}';
+				}
 			}
 			echo '</style>';
 		}

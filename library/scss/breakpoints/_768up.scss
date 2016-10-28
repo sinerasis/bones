@@ -42,7 +42,7 @@ NAVIGATION STYLES
 .nav {
 	border: 0;
 	ul {
-		background:$black;
+		background-color: $black;
 		margin-top:0;
 	}
 	li {
@@ -59,7 +59,8 @@ NAVIGATION STYLES
 			*/
 			&:hover, &:focus {
 				color: $white;
-				text-decoration: underline;
+				//text-decoration: underline;
+				background-color: rgba(255, 255, 255, .1);
 			}
 		}
 
@@ -86,9 +87,12 @@ NAVIGATION STYLES
 					display: block;
 					width: 180px;
 					border-bottom: 1px solid #ccc;
+					background-color: rgba(255, 255, 255, .1);
 
 					&:hover,
-					&:focus {}
+					&:focus {
+						background-color: rgba(255, 255, 255, .2);
+					}
 
 					&:link {}
 				}
@@ -110,6 +114,15 @@ NAVIGATION STYLES
 				ul {
 					top:0;
 					left:100%;
+					
+					a {
+						background-color: rgba(255, 255, 255, .2);
+						
+						&:hover,
+						&:focus {
+							background-color: rgba(255, 255, 255, .3);
+						}
+					}
 				}
 			}
 
@@ -117,7 +130,9 @@ NAVIGATION STYLES
 			li.current-menu-item,
 			li.current_page_item,
 			li.current_page_ancestor {
-				a {}
+				a {
+					background-color: rgba(255, 255, 255, .3);
+				}
 			}
 		}
 
@@ -133,7 +148,9 @@ NAVIGATION STYLES
 	li.current-menu-item,
 	li.current_page_item,
 	li.current_page_ancestor {
-		a {}
+		a {
+			background-color: rgba(255, 255, 255, .2);
+		}
 	}  /* end current highlighters */
 
 } /* end .nav */
