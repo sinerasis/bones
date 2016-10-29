@@ -37,10 +37,10 @@
 		
 		<?php
 		// customizer styles
-		$bones_frontend = get_theme_mod('bones_frontend', false);
-		if ($bones_frontend !== false) {
+		$bones_frontend_colors = get_theme_mod('bones_frontend_colors', false);
+		if ($bones_frontend_colors !== false) {
 			echo '<style type="text/css">';
-			foreach ($bones_frontend as $selector => $properties) { 
+			foreach ($bones_frontend_colors as $selector => $properties) { 
 				echo $selector . ' {';
 				foreach ($properties as $property => $value) {
 					echo $property . ': ' . $value . ';';
@@ -57,12 +57,13 @@
 			echo '</style>';
 		}
 		?>
-
-		<?php if(strlen($bones_ga_id) > 0): ?>
-		<!-- Google Analytics -->		
+		
+		<?php $ga_tracking_id = get_theme_mod('bones_admin_tracking_google_analytics'); ?>
+		<?php if(strlen($ga_tracking_id) > 0): ?>
+		<!-- Google Analytics -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', '<?php echo $bones_ga_id; ?>']);
+			_gaq.push(['_setAccount', '<?php echo $ga_tracking_id; ?>']);
 			_gaq.push(['_trackPageview']);
 
 			(function() {
@@ -100,7 +101,13 @@
 								<span></span>
 								<span></span>
 							</div>
-							Menu
+							<?php
+							$burger_text = get_theme_mod('bones_frontend_burger_text');
+							if (strlen($burger_text)) {
+								echo $burger_text;
+							}
+							?>
+							
 						</div>
 					</div>
 					<nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">

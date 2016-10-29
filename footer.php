@@ -17,16 +17,32 @@
 					</nav>
 				</div>
 			</div>
+			<?php
+			$copyright_year = get_theme_mod('bones_frontend_copyright_year');
+			$copyright_text = get_theme_mod('bones_frontend_copyright_text');
+			
+			$copyright = '';
+			if ($copyright_year) {
+				$copyright .= '&copy; ' . date('Y');
+			}
+			if (strlen($copyright_text)) {
+				if ($copyright_year) {
+					$copyright .= '&nbsp;';
+				}
+				$copyright .= $copyright_text;
+			}
+			?>
+			<?php if (strlen($copyright)): ?>
 			<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 				<div id="inner-footer" class="wrap cf">
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
+					<p class="source-org copyright">
+						<?php echo $copyright; ?>
+					</p>
 				</div>
 			</footer>
+			<?php endif; ?>
 		</div>
-
 		<?php // all js scripts are loaded in library/bones.php ?>
 		<?php wp_footer(); ?>
-
 	</body>
-
-</html> <!-- end of site. what a ride! -->
+</html>

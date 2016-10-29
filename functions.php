@@ -135,6 +135,7 @@ function bones_theme_customizer($wp_customize) {
   // Uncomment the below lines to remove the default customize sections 
 
   // $wp_customize->remove_section('title_tagline');
+  // We're removing the default "colors"" section because we're setting these options in the "color picker" sections below.
   $wp_customize->remove_section('colors');
   // $wp_customize->remove_section('background_image');
   // $wp_customize->remove_section('static_front_page');
@@ -149,41 +150,44 @@ function bones_theme_customizer($wp_customize) {
   
   /* COLOR PICKERS */
   $color_pickers = Array(
-	'Header' => Array(
-		// header
-		'bones_frontend[.header][background-color]' => 'Header Background',
-		'bones_frontend[.header a, .header a:visited][color]' => 'Header Links',
-		'bones_frontend[.header a:hover, .header a:focus, .header a:visted:hover, .header a:focus:hover][color]' => 'Header Links (hover)',
-		
-		// header navigation
-		'bones_frontend[.main-navigation][background-color]' => 'Main Nav Background',
-		'bones_frontend[.main-navigation a, .main-navigation a:visited][color]' => 'Main Nav Links',
-		'bones_frontend[.main-navigation a:hover, .main-navigation a:focus, .main-navigation a:visited:hover, .main-navigation a:focus:hover][color]' => 'Main Nav Links (hover)',
-	),
-	'Body' => Array(
-		// body
-		'bones_frontend[body][background-color]' => 'Body Background',
-		'bones_frontend[a, a:visited][color]' => 'Links',
-		'bones_frontend[a:hover, a:focus, a:visited:hover, a:focus:hover][color]' => 'Links (hover)',
-	),
-	'Footer' => Array(
-		// footer navigation
-		'bones_frontend[.footer-navigation][background-color]' => 'Footer Nav Background',
-		'bones_frontend[.footer-navigation a, .footer-navigation a:visited][color]' => 'Footer Nav Links',
-		'bones_frontend[.footer-navigation a:hover, .footer-navigation a:focus, .footer-navigation a:visited:hover, .footer-navigation a:focus:hover][color]' => 'Footer Nav Links (hover)',
-		
-		// footer
-		'bones_frontend[.footer][background-color]' => 'Footer Background',
-		'bones_frontend[.footer a, .footer a:visited][color]' => 'Footer Links',
-		'bones_frontend[.footer a:hover, .footer a:focus, .footer a:visited:hover, .footer a:focus:hover][color]' => 'Footer Links (hover)',
-	),
+    'Header' => Array(
+      // header
+      'bones_frontend_colors[.header][background-color]' => 'Header Background',
+      'bones_frontend_colors[.header a, .header a:visited][color]' => 'Header Links',
+      'bones_frontend_colors[.header a:hover, .header a:focus, .header a:visted:hover, .header a:focus:hover][color]' => 'Header Links (hover)',
+      
+      // header navigation
+      'bones_frontend_colors[.main-navigation][background-color]' => 'Main Nav Background',
+      'bones_frontend_colors[.main-navigation a, .main-navigation a:visited][color]' => 'Main Nav Links',
+      'bones_frontend_colors[.main-navigation a:hover, .main-navigation a:focus, .main-navigation a:visited:hover, .main-navigation a:focus:hover][color]' => 'Main Nav Links (hover)',
+    ),
+    'Body' => Array(
+      // body
+      'bones_frontend_colors[body][background-color]' => 'Body Background',
+      'bones_frontend_colors[a, a:visited][color]' => 'Links',
+      'bones_frontend_colors[a:hover, a:focus, a:visited:hover, a:focus:hover][color]' => 'Links (hover)',
+    ),
+    'Footer' => Array(
+      // footer navigation
+      'bones_frontend_colors[.footer-navigation][background-color]' => 'Footer Nav Background',
+      'bones_frontend_colors[.footer-navigation a, .footer-navigation a:visited][color]' => 'Footer Nav Links',
+      'bones_frontend_colors[.footer-navigation a:hover, .footer-navigation a:focus, .footer-navigation a:visited:hover, .footer-navigation a:focus:hover][color]' => 'Footer Nav Links (hover)',
+      
+      // footer
+      'bones_frontend_colors[.footer][background-color]' => 'Footer Background',
+      'bones_frontend_colors[.footer a, .footer a:visited][color]' => 'Footer Links',
+      'bones_frontend_colors[.footer a:hover, .footer a:focus, .footer a:visited:hover, .footer a:focus:hover][color]' => 'Footer Links (hover)',
+    ),
   );
+  // place our sections directly after the "Site Identity" section
+  $priority = 41;
 	foreach ($color_pickers as $section => $pickers) {
 		// add sections
-		$section_id = 'bones_frontend_colors_' . strtolower($section);
+		$section_id = 'bones_frontend_' . strtolower($section);
 		$wp_customize->add_section($section_id, Array(
-			'title' => $section . ' Colors',
-			'priority' => 41,
+			'title' => $section,
+      // priority is simply incremented in the order of our array above
+			'priority' => $priority++,
 		));
 		// add controls to sections
 		foreach ($pickers as $identifier => $label) {
@@ -204,7 +208,36 @@ function bones_theme_customizer($wp_customize) {
 			);
 		}
 	}
-    
+  /* BURGER MENU TEXT */
+  $wp_customize->add_setting('bones_frontend_burger_text', Array(
+    'default' => 'Menu',
+    'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_burger_text', Array(
+    'label' => 'Hamburger Menu Text',
+    'type' => 'text',
+    'section' => 'bones_frontend_header',
+  ));
+  /* FOOTER COPYRIGHT SYMBOL/YEAR */
+  $wp_customize->add_setting('bones_frontend_copyright_year', Array(
+    'default' => true,
+    'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_copyright_year', Array(
+    'label' => 'Show &copy; ' . date('Y') . ' in Footer?',
+    'type' => 'checkbox',
+    'section' => 'bones_frontend_footer',
+  ));
+  /* FOOTER COPYRIGHT TEXT */
+  $wp_customize->add_setting('bones_frontend_copyright_text', Array(
+    'default' => get_bloginfo('name') . '. All rights reserved.',
+    'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_copyright_text', Array(
+    'label' => 'Copyright Text',
+    'type' => 'text',
+    'section' => 'bones_frontend_footer',
+  ));
   /* ADMIN IMAGE SECTION */
   $wp_customize->add_section('bones_admin_image', Array(
     'title' => 'Admin Image',
@@ -220,7 +253,7 @@ function bones_theme_customizer($wp_customize) {
       $wp_customize,
       'bones_admin_image',
       array(
-        'label' => __('Admin Page Image (Logo)', 'bones'),
+        'label' => __('Admin Page Image', 'bones'),
         'section' => 'bones_admin_image',
         'settings' => 'bones_admin_image_uri',
         'context' => 'your_setting_context'
@@ -233,9 +266,10 @@ function bones_theme_customizer($wp_customize) {
     'transport' => 'postMessage'
   ));
   $wp_customize->add_control('bones_admin_image_link', Array(
-    'label' => 'Link URL (default="/")',
+    'label' => 'Link URL',
+    'description' => 'Default: /',
     'type' => 'text',
-    'section' => 'bones_admin_image'
+    'section' => 'bones_admin_image',
   ));
   /* CUSTOM ADMIN IMAGE TOOLTIP */
   $wp_customize->add_setting('bones_admin_image_tooltip', Array(
@@ -243,25 +277,27 @@ function bones_theme_customizer($wp_customize) {
     'transport' => 'postMessage'
   ));
   $wp_customize->add_control('bones_admin_image_tooltip', Array(
-    'label' => 'Tooltip Text (default=blog/site title)',
+    'label' => 'Tooltip Text',
+    'description' => 'Default: blog/site title',
     'type' => 'text',
-    'section' => 'bones_admin_image'
+    'section' => 'bones_admin_image',
   ));
   
   /* GOOGLE ANALYTICS SECTION */
-  $wp_customize->add_section('bones_google_analytics', Array(
-    'title' => 'Google Analytics',
-    'priority' => 1001
+  $wp_customize->add_section('bones_admin_tracking', Array(
+    'title' => 'Tracking',
+    'priority' => 1001,
   ));
   /* GOOGLE ANALYTICS ID STRING */
-  $wp_customize->add_setting('bones_google_analytics_id', Array(
+  $wp_customize->add_setting('bones_admin_tracking_google_analytics', Array(
     'default' => '',
-    'transport' => 'postMessage'
+    'transport' => 'postMessage',
   ));
-  $wp_customize->add_control('bones_google_analytics_id', Array(
-    'label' => 'ID (example: UA-XXXXX-X)',
+  $wp_customize->add_control('bones_admin_tracking_google_analytics', Array(
+    'label' => 'Google Analytics ID',
+    'description' => 'Example: UA-XXXXX-X',
     'type' => 'text',
-    'section' => 'bones_google_analytics'
+    'section' => 'bones_admin_tracking',
   ));
 }
 
