@@ -8,6 +8,13 @@ just edit things like thumbnail sizes, header images,
 sidebars, comments, etc.
 */
 
+//Remove hentry class everywhere to get rid of structured data errors
+function remove_hentry( $classes ) {
+    $classes = array_diff( $classes, array( 'hentry' ) );
+    return $classes;
+}
+add_filter( 'post_class','remove_hentry' );
+
 // LOAD BONES CORE (if you remove this, the theme will break)
 require_once( 'library/bones.php' );
 
