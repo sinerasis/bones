@@ -306,6 +306,23 @@ function bones_theme_customizer($wp_customize) {
     'type' => 'text',
     'section' => 'bones_admin_tracking',
   ));
+  /* FONTS */
+  $wp_customize->add_section('bones_frontend_font', Array(
+	  'title' => 'Fonts',
+	  'priority' => 30,
+  ));
+  for ($i = 1; $i <= 3; $i++) {
+	  $wp_customize->add_setting('bones_frontend_font_uris[' . $i . ']', Array(
+		  'default' => '',
+		  'transport' => 'refresh',
+	  ));
+	  $wp_customize->add_control('bones_frontend_font_uris[' . $i . ']', Array(
+		  'label' => 'Stylesheet URI',
+		  'description' => 'Appropriate protocol will be replaced at time of request (http/https).',
+		  'type' => 'text',
+		  'section' => 'bones_frontend_font',
+	  ));
+  }
 }
 
 add_action('customize_register', 'bones_theme_customizer');
@@ -399,19 +416,21 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
-	$protocol = 'http:';
+	$protocol = 'http://';
 	if (is_ssl()) {
-		$protocol = 'https:';
+		$protocol = 'https://';
 	}
 	
 	// Array key defines the handle used by WordPress, it should be unique.
-	$fonts = Array(
-		'googleFonts' => '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic',
-		'fontAwesome' => '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
-	);
+	$fonts = get_theme_mod('bones_frontend_font_uris');
 	
 	foreach ($fonts as $handle => $source) {
-		wp_enqueue_style($handle, $protocol . $source);
+		if (strlen($source)) {
+			// removes protocol if present (just in case)
+			$source = $protocol . preg_replace('#^https?://#', '', $source);
+			
+			wp_enqueue_style($handle, $source);
+		}
 	}
 }
 
