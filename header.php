@@ -1,3 +1,14 @@
+<?php
+$golive = get_theme_mod('bones_frontend_launch_golive');
+if (strlen($golive)) {
+	$golive_text = get_theme_mod('bones_frontend_launch_golive_text');
+	$golive = strtotime($golive);
+	if (time() < $golive) {
+		die($golive_text);
+	}
+}
+?>
+
 <!doctype html>
 
 <!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->

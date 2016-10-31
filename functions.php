@@ -306,6 +306,31 @@ function bones_theme_customizer($wp_customize) {
     'type' => 'text',
     'section' => 'bones_admin_tracking',
   ));
+  /* LAUNCH SETTINGS */ 
+  $wp_customize->add_section('bones_frontend_launch', Array(
+	  'title' => 'Launch Settings',
+	  'priority' => 21,
+  ));
+  $wp_customize->add_setting('bones_frontend_launch_golive', Array(
+	  'default' => '',
+	  'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_launch_golive', Array(
+	  'label' => 'Go Live Date',
+	  'description' => '',
+	  'type' => 'date',
+	  'section' => 'bones_frontend_launch',
+  ));
+  $wp_customize->add_setting('bones_frontend_launch_golive_text', Array(
+	  'default' => 'Coming soon!',
+	  'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_launch_golive_text', Array(
+	  'label' => '(Pre) Go Live Text',
+	  'description' => 'This text will be output if the site is requested before the go live date defined above.',
+	  'type' => 'text',
+	  'section' => 'bones_frontend_launch',
+  ));
   /* FONTS */
   $wp_customize->add_section('bones_frontend_font', Array(
 	  'title' => 'Fonts',
