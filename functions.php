@@ -424,9 +424,9 @@ No more plugin for this simple task!
 */
 function my_login_logo() {
     // get the image uri defined in theme customizer
-    $file = get_theme_mod('p1bones_admin_image_uri');
+    $file = get_theme_mod('bones_admin_image_uri');
     
-    // if no image is defined, use the default p1bones image
+    // if no image is defined, use the default bones image
     if(strlen($file) < 1) {
       $file = get_stylesheet_directory_uri() . '/library/images/login-logo.png';
     }
@@ -454,7 +454,7 @@ We're changing this to simply direct the user to the document root.
 */
 function loginpage_custom_link() {
   // get url defined in theme customizer
-  $url = get_theme_mod('p1bones_admin_image_link');
+  $url = get_theme_mod('bones_admin_image_link');
   
   // if there is a url defined, return it
   if(strlen($url) > 0) {
@@ -473,7 +473,7 @@ We're changing it to simply display the name of our blog/site.
 */
 function change_title_on_logo() {
   // get tooltip defined in theme customizer
-  $tooltip = get_theme_mod('p1bones_admin_image_tooltip');
+  $tooltip = get_theme_mod('bones_admin_image_tooltip');
   
   // if there is a tooltip defined, return it
   if(strlen($tooltip) > 0) {
