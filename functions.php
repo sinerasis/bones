@@ -399,14 +399,15 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
-	$protocol = 'http';
+	$protocol = 'http:';
 	if (is_ssl()) {
-		$protocol = 'https';
+		$protocol = 'https:';
 	}
 	
 	// Array key defines the handle used by WordPress, it should be unique.
 	$fonts = Array(
 		'googleFonts' => '//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic',
+		'fontAwesome' => '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
 	);
 	
 	foreach ($fonts as $handle => $source) {
