@@ -1,10 +1,23 @@
 <?php
+// check for a go live date
 $golive = get_theme_mod('bones_frontend_launch_golive');
 if (strlen($golive)) {
-	$golive_text = get_theme_mod('bones_frontend_launch_golive_text');
-	$golive = strtotime($golive);
-	if (time() < $golive) {
-		die($golive_text);
+	// make sure we use our wordpress installations timezone setting!
+	date_default_timezone_set(get_option('timezone_string'));
+	
+	// get our ip whitelist
+	$golive_whitelist = get_theme_mod('bones_frontend_launch_ip_whitelist');
+	if (strlen($golive_whitelist)) {
+		$golive_whitelist = explode(",", $golive_whitelist);
+	}
+	
+	if (!in_array($_SERVER['REMOTE_ADDR'], $golive_whitelist)) {
+		// output pre go live text
+		$golive_text = get_theme_mod('bones_frontend_launch_golive_text');
+		$golive = strtotime($golive);
+		if (time() < $golive) {
+			die($golive_text);
+		}
 	}
 }
 ?>

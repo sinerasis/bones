@@ -317,7 +317,7 @@ function bones_theme_customizer($wp_customize) {
   ));
   $wp_customize->add_control('bones_frontend_launch_golive', Array(
 	  'label' => 'Go Live Date',
-	  'description' => '',
+	  'description' => 'Make note of your servers time zone setting!',
 	  'type' => 'date',
 	  'section' => 'bones_frontend_launch',
   ));
@@ -329,6 +329,16 @@ function bones_theme_customizer($wp_customize) {
 	  'label' => '(Pre) Go Live Text',
 	  'description' => 'This text will be output if the site is requested before the go live date defined above.',
 	  'type' => 'text',
+	  'section' => 'bones_frontend_launch',
+  ));
+  $wp_customize->add_setting('bones_frontend_launch_ip_whitelist', Array(
+	  'default' => '',
+	  'transport' => 'refresh',
+  ));
+  $wp_customize->add_control('bones_frontend_launch_ip_whitelist', Array(
+	  'label' => 'IP Whitelist',
+	  'description' => 'These IP(s) will view the site normally even if the go live date is in the future. Enter a comma separated list.',
+	  'type' => 'textarea',
 	  'section' => 'bones_frontend_launch',
   ));
   /* FONTS */
