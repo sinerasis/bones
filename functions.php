@@ -470,7 +470,7 @@ function bones_fonts() {
 	$bones_fonts = get_theme_mod('bones_frontend_font_uris');
 	
 	// Merge font arrays. Ideally keys are unique here, but it's not really a big deal for our use. WordPress likes it though.
-	$fonts = array_merge($bone_fonts, $font_enqueue);
+	$fonts = array_merge($bones_fonts, $font_enqueue);
 	
 	foreach ($fonts as $handle => $source) {
 		if (strlen($source)) {
