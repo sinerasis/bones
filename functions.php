@@ -451,17 +451,30 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
+	// If you want to add additional fonts to style text generically, you can add them here:
+	// This should be a simple array of URL's to font stylesheets. Keep in mind each entry is an additional HTTP request on page load.
+	// If you have more than a couple, you should probably combine them and host locally.
+	// Protocol (http/https) will be stripped and prefixed appropriatly at request time.
+	$font_enqueue = Array(
+		// 'http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
+		
+	);
+	
+	// Determine protocol
 	$protocol = 'http://';
 	if (is_ssl()) {
 		$protocol = 'https://';
 	}
 	
-	// Array key defines the handle used by WordPress, it should be unique.
-	$fonts = get_theme_mod('bones_frontend_font_uris');
+	// Fonts from the customizer, should probably just stick to icon type fonts (like Font Awesome, Material Icons, etc)
+	$bones_fonts = get_theme_mod('bones_frontend_font_uris');
+	
+	// Merge font arrays. Ideally keys are unique here, but it's not really a big deal for our use. WordPress likes it though.
+	$fonts = array_merge($bone_fonts, $font_enqueue);
 	
 	foreach ($fonts as $handle => $source) {
 		if (strlen($source)) {
-			// removes protocol if present (just in case)
+			// removes protocol and appends the protocal we've deteremined previously
 			$source = $protocol . preg_replace('#^https?://#', '', $source);
 			
 			wp_enqueue_style($handle, $source);
